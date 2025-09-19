@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PPE Detection Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f2f2f2; text-align: center; }
+        .container { margin-top: 50px; background: #fff; padding: 30px; border-radius: 10px; display: inline-block; }
+        img { max-width: 400px; border-radius: 10px; margin: 20px 0; }
+        .result { font-size: 22px; margin: 20px 0; }
+        .heading { font-size: 28px; color: #2e8b57; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            {% if class_name in ['helmet', 'safety_vest', 'gloves', 'goggles'] %}
+                Weared Safety Gadgets
+            {% else %}
+                Missing Safety Gadgets
+            {% endif %}
+        </div>
+        <img src="{{ image_url }}" alt="Uploaded Image">
+        <div class="result">
+            {% if class_name in ['helmet', 'safety_vest', 'gloves', 'goggles'] %}
+                Wearing {{ class_name.replace('_', ' ').title() }}
+            {% else %}
+                Not Wearing {{ class_name.replace('no_', '').replace('_', ' ').title() }}
+            {% endif %}
+            <br>
+            Confidence: {{ '%.2f'|format(confidence*100) }}%
+        </div>
+        <a href="{{ url_for('index') }}">Try Another Image</a>
+    </div>
+</body>
+</html>
