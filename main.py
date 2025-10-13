@@ -2,7 +2,7 @@
 from models import PPEDataCollector
 
 if __name__ == "__main__":
-    print("🏗 Construction Site PPE Detection System")
+    print(" Construction Site PPE Detection System")
     print("="*50)
 
     print("1. Data Collection")
