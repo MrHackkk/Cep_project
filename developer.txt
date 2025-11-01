@@ -105,6 +105,24 @@ Purpose: Data storage
 Why Used: Built into Python, human readable format, easy to parse and write, no external dependencies
 How Used: Saves detection history to file, loads data on startup, exports data in readable format
 
+Batch Files
+Purpose: Easy system startup
+What Are Batch Files: Batch files are simple text files with .bat extension that contain commands, when you double click a batch file, Windows automatically runs all commands inside it, think of it as a list of instructions that computer follows automatically, they are used to automate repetitive tasks
+
+How Batch Files Work: Batch files contain commands written in plain text, each line is a command that would normally be typed in command prompt, Windows Command Processor reads these commands one by one, executes them in sequence automatically, no need to type commands manually
+
+Why Used in This Project: Provides easy way to start the system without technical knowledge, users don't need to open command prompt, users don't need to remember Python commands, just double click and system starts, makes project more user-friendly, especially important for non-technical users like supervisors or managers
+
+How Batch Files Are Used: Our start.bat file contains simple command: python run.py, when user double clicks start.bat, it automatically opens command prompt, runs the python run.py command, starts our safety detection system, user sees output and system starts working
+
+What's Inside Our Batch File: First line sets window title to Safety Detection System, second line displays message Starting Safety Detection System, third line runs the command python run.py which starts our application, last line keeps window open if there's an error
+
+Benefits of Using Batch Files: Simplifies user experience, reduces chance of typing errors, makes project look more professional, easier to distribute and use, can be used by anyone regardless of technical skills
+
+Creating and Editing Batch Files: Can be created using simple Notepad, just type commands and save with .bat extension, very easy to modify if needed, no special software required, anyone can create or edit batch files
+
+Example Usage: User receives project folder, sees start.bat file, double clicks it, system starts automatically, no need to learn command prompt, no need to remember Python commands, works for everyone
+
 WHY THIS TECHNOLOGY OR LIBRARIES WERE USED
 
 Why Python
@@ -128,7 +146,38 @@ Installation Steps
 Install Python 3.8 or higher from python.org, open command prompt in project folder, run command: pip install -r requirements.txt, wait for all libraries to install
 
 Running the System
-Double click start.bat file, or run python run.py in command prompt, browser will open automatically, if not, go to http://localhost:5000
+
+Method 1: Using Batch File (Easiest)
+Double click start.bat file in project folder, command prompt window will open automatically, Python program will start running, browser will open automatically showing the interface, if browser doesn't open, manually go to http://localhost:5000
+
+Method 2: Using Command Prompt
+Open command prompt, navigate to project folder using cd command, type python run.py and press Enter, system will start and browser will open
+
+Why Batch File is Better
+Batch file method is easier for non-technical users, no need to open command prompt manually, no need to remember commands, just double click and everything works, preferred method for most users
+
+Batch File Explanation
+
+What is start.bat
+start.bat is a Windows batch file that helps start the system easily. Batch files are simple script files that run commands automatically. When you double click start.bat, it automatically runs the python run.py command for you.
+
+Why We Created It
+Normally to run Python programs, users need to open command prompt, navigate to project folder, type python run.py command. This requires technical knowledge. With batch file, user just double clicks and system starts. Makes project accessible to everyone.
+
+How It Works
+When you double click start.bat file, Windows automatically opens command prompt window, executes the commands written inside batch file, runs our Python program, displays any messages or errors. Everything happens automatically.
+
+What Commands Are Inside
+Our start.bat file contains simple commands: title command sets window title, echo command displays messages, python run.py runs our main program. All these commands are executed automatically when batch file is opened.
+
+User Experience
+Without batch file: User must open command prompt, change directory, type python run.py, remember exact syntax. With batch file: User just double clicks start.bat, everything happens automatically, no technical knowledge needed, suitable for all users.
+
+Technical Details
+Batch files have .bat extension, they are plain text files, can be edited with Notepad, contain DOS or Windows commands, execute commands in sequence from top to bottom, very simple and powerful automation tool.
+
+Alternative Methods
+System can also be started by opening command prompt and typing python run.py. But batch file makes it much easier. Users can create shortcut to batch file on desktop for even easier access. Batch file is optional but recommended for ease of use.
 
 Login Process
 Enter username and password on login page, default username: admin, default password: admin123, click Login button
@@ -186,7 +235,7 @@ Benefits
 Continuous automated monitoring replaces manual checking, immediate alerts prevent accidents, documented evidence through screenshots, historical data for analysis, improved safety compliance, reduced supervision workload
 
 Technologies Summary
-Python for programming, TensorFlow for AI, OpenCV for computer vision, Flask for web interface, JSON for data storage, HTML CSS JavaScript for frontend
+Python for programming, TensorFlow for AI, OpenCV for computer vision, Flask for web interface, JSON for data storage, HTML CSS JavaScript for frontend, Batch files for easy system startup
 
 Project Outcome
 A functional safety monitoring system that can detect PPE compliance in real time, provides alerts and notifications, stores historical data, generates reports, and helps improve workplace safety through automation
