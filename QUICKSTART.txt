@@ -1,51 +1,88 @@
 QUICK START GUIDE - SAFETY DETECTION SYSTEM
 
+THREE SEPARATE MODULES:
+
+1. DETECTION MODULE (detect.py)
+   - Camera-based PPE detection
+   - No login required
+   - Run: startdetect.bat or python detect.py
+   - Access: http://localhost:5000
+
+2. ADMIN MODULE (admin.py)
+   - View reports with graphs and statistics
+   - Login required
+   - Run: startadmin.bat or python admin.py
+   - Access: http://localhost:5001
+   - Login: admin / admin123
+
+3. USER MODULE (user.py)
+   - View reports and entries (no graphs)
+   - Login required
+   - Run: startuser.bat or python user.py
+   - Access: http://localhost:5002
+   - Login: user/user123 or viewer/viewer123
+
+INSTALLATION:
+
 STEP 1: INSTALL PYTHON
 - Download Python 3.8 or higher from python.org
-- Install it with default settings
-- Make sure to check "Add Python to PATH" during installation
+- Install with default settings
+- Check "Add Python to PATH" during installation
 
 STEP 2: INSTALL DEPENDENCIES
 - Open command prompt in project folder
 - Run: pip install -r requirements.txt
 - Wait for installation to complete
 
-STEP 3: START THE SYSTEM
-- Double click start.bat file
-- Wait for system to start
-- Browser will open automatically
+USAGE:
 
-STEP 4: LOGIN
-Use these credentials to login:
+FOR DETECTION (Workers):
+- Double click startdetect.bat
+- No login needed
+- Camera feed takes 2/3 of screen (left side)
+- Missing items shown on right side (1/3)
+- Click "Start Detection" to begin
+- Click "Stop Detection" to stop immediately
 
-ADMIN ACCOUNT:
+FOR ADMIN REPORTS:
+- Double click startadmin.bat
+- Login with: admin / admin123
+- View graphs, statistics, and all entries
+- See how many users detect regularly
+
+FOR USER REPORTS:
+- Double click startuser.bat
+- Login with: user/user123 or viewer/viewer123
+- View entries and basic statistics
+- No graphs (admin only feature)
+
+LOGIN CREDENTIALS:
+
+Admin:
   Username: admin
   Password: admin123
 
-VIEWER ACCOUNT:
+User:
+  Username: user
+  Password: user123
+
+Viewer:
   Username: viewer
   Password: viewer123
-
-STEP 5: USE THE SYSTEM
-- Click "Start Detection" button
-- System will start monitoring
-- View real-time status and statistics
-- Click "Export CSV" to download data
 
 TROUBLESHOOTING:
 
 If camera doesn't work:
-- System will still run with mock detection data
+- System will use mock detection data
 - Make sure camera is not used by another application
 - Check camera permissions in Windows settings
 
-If browser doesn't open:
-- Manually go to: http://localhost:5000
-- Make sure no other program is using port 5000
+If port is busy:
+- Only run one module at a time
+- Detection: port 5000
+- Admin: port 5001
+- User: port 5002
 
 If login fails:
-- Make sure you're using correct credentials (case-sensitive)
-- Check CREDENTIALS.txt file for details
-
-For more help, check developer.txt file for detailed information.
-
+- Check credentials are correct (case-sensitive)
+- Different modules use different credentials
