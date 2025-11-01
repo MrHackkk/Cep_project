@@ -65,10 +65,17 @@ def main():
     try:
         from ui import app, detector
         
+        # Try to start camera, but continue even if it fails
         if not detector.camera:
-            if not detector.start_camera():
-                print("Warning: Could not start camera. Some features may not work.")
+            if detector.start_camera():
+                print("Camera initialized successfully")
+            else:
+                print("Warning: Could not start camera.")
+                print("System will still run with mock detection data.")
+                print("Make sure camera is connected and not being used by another application.")
         
+        print("\nSystem is ready!")
+        print("Login credentials are shown above and on the login page.")
         app.run(debug=False, host='0.0.0.0', port=5000)
         
     except KeyboardInterrupt:

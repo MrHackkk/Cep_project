@@ -100,50 +100,70 @@ def index():
 def video_feed():
     """Video streaming route"""
     def generate_frames():
+        # Create a black frame if camera not available
+        import numpy as np
+        black_frame = np.zeros((480, 640, 3), dtype=np.uint8)
+        cv2.putText(black_frame, "Camera not available", (150, 240), 
+                   cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+        cv2.putText(black_frame, "Using mock detection data", (120, 280), 
+                   cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+        
         while detector.detection_active:
             frame = detector.get_frame()
             if frame is not None:
                 detection_results = detector.process_frame(frame)
+            else:
+                # If no camera, use mock detection
+                detection_results = detector.mock_prediction()
+                detection_results = detector.analyze_safety_compliance(detection_results)
+                detection_results['timestamp'] = datetime.now().strftime("%H:%M:%S")
+            
+            # Save detection to storage
+            if detection_results:
+                storage.save_detection(detection_results)
                 
-                # Save detection to storage
-                if detection_results:
-                    storage.save_detection(detection_results)
-                    
-                    # Track entry/exit
-                    now = datetime.now()
-                    date_str = now.strftime('%Y-%m-%d')
-                    time_str = now.strftime('%H:%M:%S')
-                    
-                    if date_str not in entry_times:
-                        entry_times[date_str] = {'in': None, 'out': None}
-                    
-                    # Mark entry/exit based on compliance
-                    if detection_results.get('is_compliant'):
-                        if entry_times[date_str]['in'] is None:
-                            entry_times[date_str]['in'] = time_str
-                        if current_status.get(date_str) != 'in':
-                            current_status[date_str] = 'in'
-                            entry_times[date_str]['out'] = None
-                    else:
-                        if entry_times[date_str]['in'] is not None and current_status.get(date_str) == 'in':
-                            if entry_times[date_str]['out'] is None:
-                                entry_times[date_str]['out'] = time_str
-                            current_status[date_str] = 'out'
-                    
-                    # Save violation screenshot and play alert
-                    if not detection_results.get('is_compliant'):
-                        detector.save_violation_screenshot(frame)
-                        try:
-                            winsound.Beep(1000, 500)
-                        except:
-                            pass
+                # Track entry/exit
+                now = datetime.now()
+                date_str = now.strftime('%Y-%m-%d')
+                time_str = now.strftime('%H:%M:%S')
                 
+                if date_str not in entry_times:
+                    entry_times[date_str] = {'in': None, 'out': None}
+                
+                # Mark entry/exit based on compliance
+                if detection_results.get('is_compliant'):
+                    if entry_times[date_str]['in'] is None:
+                        entry_times[date_str]['in'] = time_str
+                    if current_status.get(date_str) != 'in':
+                        current_status[date_str] = 'in'
+                        entry_times[date_str]['out'] = None
+                else:
+                    if entry_times[date_str]['in'] is not None and current_status.get(date_str) == 'in':
+                        if entry_times[date_str]['out'] is None:
+                            entry_times[date_str]['out'] = time_str
+                        current_status[date_str] = 'out'
+                
+                # Save violation screenshot and play alert (only if camera available)
+                if not detection_results.get('is_compliant') and frame is not None:
+                    detector.save_violation_screenshot(frame)
+                    try:
+                        winsound.Beep(1000, 500)
+                    except:
+                        pass
+            
+            # Draw overlay on frame or use black frame
+            if frame is not None:
                 annotated_frame = draw_detection_overlay(frame, detection_results)
-                ret, buffer = cv2.imencode('.jpg', annotated_frame)
-                if ret:
-                    frame_bytes = buffer.tobytes()
-                    yield (b'--frame\r\n'
-                           b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+            else:
+                # Use black frame with detection overlay if camera not available
+                annotated_frame = draw_detection_overlay(black_frame, detection_results)
+            
+            # Encode and send frame
+            ret, buffer = cv2.imencode('.jpg', annotated_frame)
+            if ret:
+                frame_bytes = buffer.tobytes()
+                yield (b'--frame\r\n'
+                       b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
             time.sleep(0.033)
     
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -156,7 +176,9 @@ def start_detection():
     if not detector.camera:
         success = detector.start_camera()
         if not success:
-            return jsonify({'success': False, 'message': 'Could not start camera'})
+            # Still allow starting even if camera fails - will show message
+            detector.detection_active = True
+            return jsonify({'success': True, 'message': 'Detection started (Camera not available - using mock data)'})
     
     detector.detection_active = True
     return jsonify({'success': True, 'message': 'Detection started'})

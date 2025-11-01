@@ -1,0 +1,51 @@
+QUICK START GUIDE - SAFETY DETECTION SYSTEM
+
+STEP 1: INSTALL PYTHON
+- Download Python 3.8 or higher from python.org
+- Install it with default settings
+- Make sure to check "Add Python to PATH" during installation
+
+STEP 2: INSTALL DEPENDENCIES
+- Open command prompt in project folder
+- Run: pip install -r requirements.txt
+- Wait for installation to complete
+
+STEP 3: START THE SYSTEM
+- Double click start.bat file
+- Wait for system to start
+- Browser will open automatically
+
+STEP 4: LOGIN
+Use these credentials to login:
+
+ADMIN ACCOUNT:
+  Username: admin
+  Password: admin123
+
+VIEWER ACCOUNT:
+  Username: viewer
+  Password: viewer123
+
+STEP 5: USE THE SYSTEM
+- Click "Start Detection" button
+- System will start monitoring
+- View real-time status and statistics
+- Click "Export CSV" to download data
+
+TROUBLESHOOTING:
+
+If camera doesn't work:
+- System will still run with mock detection data
+- Make sure camera is not used by another application
+- Check camera permissions in Windows settings
+
+If browser doesn't open:
+- Manually go to: http://localhost:5000
+- Make sure no other program is using port 5000
+
+If login fails:
+- Make sure you're using correct credentials (case-sensitive)
+- Check CREDENTIALS.txt file for details
+
+For more help, check developer.txt file for detailed information.
+
