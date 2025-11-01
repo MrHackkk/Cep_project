@@ -129,8 +129,9 @@ class PPEDetector:
             if not self.camera.isOpened():
                 raise Exception("Could not open camera")
             
-            self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-            self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+            # Set higher resolution for better display
+            self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+            self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
             self.camera.set(cv2.CAP_PROP_FPS, 30)
             
             print("Camera started successfully")
