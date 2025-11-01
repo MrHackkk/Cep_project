@@ -1,0 +1,78 @@
+PPE Safety Detection System - Project Ideology
+
+Project Overview
+This project is a computer vision based safety monitoring system designed for construction sites and industrial workplaces. The system uses artificial intelligence to automatically detect whether workers are wearing required Personal Protective Equipment (PPE).
+
+Purpose
+The main purpose of this system is to improve workplace safety by automatically monitoring compliance with safety equipment requirements. Traditional manual monitoring is time consuming and can miss violations. This automated system provides continuous monitoring and instant alerts when safety violations are detected.
+
+Problem Statement
+Construction sites and industrial workplaces require workers to wear specific safety equipment such as hard hats, safety vests, gloves, and safety glasses. Manual monitoring of compliance is difficult because supervisors cannot watch all workers at all times. This leads to safety violations going unnoticed, which can result in accidents and injuries.
+
+Solution Approach
+We developed a system that uses computer vision and deep learning to automatically detect PPE compliance. The system captures video feed from cameras, processes each frame using an AI model, and identifies which safety items are present or missing. The system can run continuously and alert supervisors immediately when violations are detected.
+
+Key Features
+Real time detection using live camera feed
+Automatic detection of four safety items: hard hat, safety vest, gloves, and safety glasses
+Compliance status tracking with visual indicators
+Automatic violation screenshot saving for evidence
+Daily entry and exit time tracking
+Statistics and reporting functionality
+CSV export for data analysis
+Simple web interface for monitoring
+
+Technologies Used
+Python programming language
+TensorFlow for deep learning model
+OpenCV for computer vision and camera handling
+Flask for web interface
+JSON for data storage
+HTML, CSS, and JavaScript for user interface
+
+System Components
+Detection Module: Processes video frames and identifies PPE items
+Storage Module: Saves detection history and violation records
+User Interface: Web based dashboard for monitoring
+Admin Module: Handles user authentication and access control
+Data Export: CSV export functionality for analysis
+
+Hardware Requirements
+Computer with webcam or external camera
+Minimum 4GB RAM recommended
+Python 3.8 or higher
+Internet connection for initial setup only
+
+Software Requirements
+Windows operating system
+Python with required libraries
+Web browser for accessing interface
+
+Use Cases
+Construction site safety monitoring
+Industrial workplace compliance checking
+Safety training and awareness
+Incident documentation and analysis
+Compliance reporting for management
+
+Benefits
+Continuous automated monitoring
+Immediate violation alerts
+Documented evidence through screenshots
+Historical data for trend analysis
+Reduced need for constant human supervision
+Improved safety awareness among workers
+
+Future Improvements
+Support for additional safety items
+Multi camera support
+Mobile app integration
+Advanced analytics and reporting
+Integration with existing safety management systems
+
+Conclusion
+This project demonstrates the practical application of artificial intelligence in workplace safety. By automating the monitoring process, we can improve compliance rates and create safer working environments. The system is designed to be simple to use while providing powerful monitoring capabilities.
+
+Author Notes
+This project was developed as a learning exercise to understand computer vision, deep learning, and web application development. All code is written from scratch with guidance from documentation and tutorials. The system uses mock predictions when trained models are not available, making it functional even without extensive training data.
+

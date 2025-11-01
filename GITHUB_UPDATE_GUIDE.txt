@@ -1,0 +1,147 @@
+HOW TO UPDATE GITHUB REPOSITORY
+
+METHOD 1: Using Command Line (Recommended)
+
+Step 1: Open Command Prompt in your project folder
+- Navigate to your project folder: cd D:\Cep_Prj
+- Make sure Git is installed
+
+Step 2: Check current status
+git status
+
+Step 3: Remove old files (one by one or all at once)
+git rm camera_detection.py
+git rm run_safety_detection.py
+git rm detect.py
+git rm demo_with_images.py
+git rm main.py
+git rm models.py
+git rm enhanced_models.py
+git rm train.py
+git rm train_enhanced_model.py
+git rm simple_data_storage.py
+git rm README_Enhanced.md
+git rm GITHUB_SETUP.md
+git rm ENHANCEMENT_SUGGESTIONS.md
+git rm IMPLEMENTATION_PRIORITY.md
+git rm QUICK_START_GUIDE.md
+git rm SIMPLE_ENHANCEMENTS_SUMMARY.md
+git rm STUDENT_FRIENDLY_ENHANCEMENTS.md
+git rm start_safety_detection.bat
+
+Step 4: Remove old template files
+git rm templates/camera_interface.html
+git rm templates/detection_result.html
+git rm templates/image_demo.html
+
+Step 5: Add all new files
+git add storage.py
+git add detector.py
+git add ui.py
+git add admin.py
+git add run.py
+git add start.bat
+git add requirements.txt
+git add templates/login.html
+git add templates/index.html
+git add ProjectIdeology.txt
+git add TrailBasedProject.txt
+git add SimpleFunctionalProject.txt
+git add FinalProject.txt
+git add developer.txt
+
+Step 6: Commit all changes
+git commit -m "Project restructure: Simplified file structure, added new features, updated documentation"
+
+Step 7: Push to GitHub
+git push origin main
+
+If you get authentication error, you may need to:
+- Use: git push origin main --force
+- Or set up GitHub credentials
+
+
+METHOD 2: Using Batch Script
+
+Simply double-click gitupdate.bat file and follow the prompts.
+The script will automatically do everything for you.
+
+
+METHOD 3: Manual Method (If above don't work)
+
+Step 1: Delete old files manually from GitHub website
+- Go to your repository on GitHub
+- Click on each old file
+- Click Delete button
+- Commit the deletion
+
+Step 2: Upload new files
+- Click "Add file" button
+- Select "Upload files"
+- Drag and drop all new files
+- Commit the upload
+
+
+FILES TO REMOVE FROM GITHUB:
+- camera_detection.py
+- run_safety_detection.py
+- detect.py
+- demo_with_images.py
+- main.py
+- models.py
+- enhanced_models.py
+- train.py
+- train_enhanced_model.py
+- simple_data_storage.py
+- README_Enhanced.md
+- GITHUB_SETUP.md
+- ENHANCEMENT_SUGGESTIONS.md
+- IMPLEMENTATION_PRIORITY.md
+- QUICK_START_GUIDE.md
+- SIMPLE_ENHANCEMENTS_SUMMARY.md
+- STUDENT_FRIENDLY_ENHANCEMENTS.md
+- start_safety_detection.bat
+- templates/camera_interface.html
+- templates/detection_result.html
+- templates/image_demo.html
+
+
+NEW FILES TO ADD:
+- storage.py
+- detector.py
+- ui.py
+- admin.py
+- run.py
+- start.bat
+- requirements.txt
+- templates/login.html
+- templates/index.html
+- ProjectIdeology.txt
+- TrailBasedProject.txt
+- SimpleFunctionalProject.txt
+- FinalProject.txt
+- developer.txt
+
+
+IMPORTANT NOTES:
+- Make sure to backup your work before pushing
+- If you have uncommitted changes, commit them first
+- Keep ppe_model folder (if it exists in GitHub)
+- Keep construction_ppe_dataset folder (if it exists)
+- Keep static folder (if it exists)
+
+TROUBLESHOOTING:
+
+If git rm fails:
+- File might not be tracked. Use: git rm --cached filename
+- Or delete manually and use: git add -A
+
+If push fails:
+- Check internet connection
+- Verify GitHub credentials
+- Try: git push origin main --force (use carefully)
+
+If authentication error:
+- Use GitHub Personal Access Token instead of password
+- Or set up SSH keys
+
